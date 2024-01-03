@@ -6,7 +6,7 @@
 
 import Foundation
 
-struct EmojiRepository {
+public struct EmojiRepository {
     
     /**
      * The list of emoji categories to be displayed.
@@ -16,19 +16,25 @@ struct EmojiRepository {
     /**
      * The shared instance of the EmojiRepository class.
      */
-    static let shared = EmojiRepository()
+    public static let shared = EmojiRepository()
     
+    
+    private (set) var emojis: [Emoji] = []
     /**
      * The default initializer, which decodes the emojis from the JSON resource, and sorts them
      * into their respective categories.
      */
     init() {
         do {
-            let emojis = try decodeEmojis(at: "emojis")
+            emojis = try decodeEmojis(at: "emojis")
             categories = sortCategories(for: emojis)
         } catch {
             fatalError(error.localizedDescription)
         }
+    }
+    
+    public func emojiFromString(emojiString: String) -> Emoji? {
+        return emojis.first(where: { $0.emoji == emojiString})
     }
     
     /**

@@ -10,7 +10,7 @@ private struct Constants {
     static let bottomPadding: CGFloat = 25.0
 }
 
-struct EmojiView: View {
+public struct EmojiView: View {
     
     /**
      * The current section title.
@@ -37,15 +37,15 @@ struct EmojiView: View {
      *
      * - Parameter onEmojiSelection - a callback used to notify that an emoji has been selected.
      */
-    init(onEmojiSelection: ((Emoji) -> Void)?) {
+    public init(onEmojiSelection: ((Emoji) -> Void)?) {
         self.onEmojiSelection = onEmojiSelection
-        UIScrollView.appearance().bounces = false
+        //UIScrollView.appearance().bounces = false
     }
     
     /**
      * The main rendering body.
      */
-    var body: some View {
+    public var body: some View {
         
         ScrollViewReader { proxy in
             
